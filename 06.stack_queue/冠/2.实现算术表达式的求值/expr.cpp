@@ -11,19 +11,19 @@ using namespace std;
 double do_calc(double right, char oper, double left);
 
 const int SYMNUMS = 7;
-const char symbols[SYMNUMS] = {'+','-','*','/','(',')','$'};
+const char symbols[SYMNUMS] = {'+','-','*','/','(',')','#'};
 
 //存储优先级关系
 const char prio_table[SYMNUMS][SYMNUMS] = 
 {
-    //    +   -   *   /   (   )   $
+//    +   -   *   /   (   )   #
     {'>','>','<','<','<','>','>'}, // +
     {'>','>','<','<','<','>','>'}, // -
     {'>','>','>','>','<','>','>'}, // *
     {'>','>','>','>','<','>','>'}, // /
     {'<','<','<','<','<','=','x'}, // (
     {'>','>','>','>','x','>','>'}, // )
-    {'<','<','<','<','<','x','='}  // $
+    {'<','<','<','<','<','x','='}  // #
 }; 
 
 int main(int argc, char* argv[])
@@ -46,15 +46,15 @@ int main(int argc, char* argv[])
     {
         OperStack.pop();
     }
-    OperStack.push('$');
+    OperStack.push('#');
 
     cout << "please input expression : ";
     string express = "";
     getline(cin,express);
-    express += "$";
+    express += "#";
 
     const char* p = express.c_str();
-    while(*p != '$' || OperStack.top() != '$')
+    while(*p != '#' || OperStack.top() != '#')
     {
         //*p是操作数
         if(isdigit(*p))    
