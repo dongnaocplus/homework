@@ -206,16 +206,6 @@ void analyse(PQUEUE& q, float* buffer, int buflen)
 
     for(int i = 0; i < nums; ++i)
     {
-        // if(i > 0 && i % 10 == 0)
-        // {
-        //     cout << endl;
-        // }
-        // cout << setw(8) << buffer[i];
-        // if(i >= 500)
-        // {
-        //     cout << endl << "......" << endl;
-        //     break;
-        // }
         float e = *(buffer + i);
         if(!q.enqueue(e))
         {
