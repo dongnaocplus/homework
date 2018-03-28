@@ -55,8 +55,8 @@ int main(int argc, char** argv)
         if(f_data.is_open())
         {
             cout << "\r";
-            cout << "Anaylse file : " << it->c_str() << "\tTotal : "  <<  setw(2) 
-                 << (int)((1.0f * ++count/files) * 100.0f) << "\%";
+            cout << "Anaylsing " << setw(2) << (int)((1.0f * ++count/files) * 100.0f) << "\%"
+                 << "(" << it->c_str() << ")";
             cout.flush();
 
             f_data.seekg(0,ios::end);
@@ -107,11 +107,13 @@ int main(int argc, char** argv)
 
     //写result.txt文件
     std::ofstream outfile("result.txt",std::ios::binary | std::ios::out);
+    outfile << setiosflags(ios::fixed);
+    outfile << setprecision(3);
     if(outfile.is_open())
     {
         for(int i = 1; i <= q_size; ++i)
         {
-            outfile << setw(10) << result[i - 1];
+            outfile << setw(12) << result[i - 1];
             if(i % 10 == 0)
             {
                 outfile << endl;
@@ -126,10 +128,12 @@ int main(int argc, char** argv)
     cout << "\r";
     cout << "Generate result file success!              " << endl;
     cout << "The " << q_size << " largest float are : " << endl;
+    cout << setiosflags(ios::fixed);
+    cout << setprecision(3);
     for(int i = 1; i <= q_size; ++i)
     {
-        cout << setw(10) << result[i - 1];
-        if(i % 10 == 0)
+        cout << setw(12) << result[i - 1];
+        if(i % 8 == 0)
         {
             cout << endl;
         }
