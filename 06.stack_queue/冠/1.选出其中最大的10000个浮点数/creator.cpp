@@ -3,6 +3,8 @@
 #include <random>
 #include <fstream>
 #include <iomanip>
+#include <ctime>
+
 using namespace std;
 
 int main(int argc, char** argv)
@@ -13,9 +15,11 @@ int main(int argc, char** argv)
     const unsigned int TOTALS = 1000000000;
     const unsigned int BLOCK  = 10000000;
 
-    std::default_random_engine e;
-    std::uniform_int_distribution<> u1(0,900000); //随机整数部分
-    std::uniform_int_distribution<> u2(0,99);     //随机小数部分
+    ::srand((unsigned)::time(NULL));
+
+    // std::default_random_engine e;
+    // std::uniform_int_distribution<> u1(0,900000); //随机整数部分
+    // std::uniform_int_distribution<> u2(0,99);     //随机小数部分
 
     unsigned int curr = 0;
     int block_id = 0;
@@ -35,7 +39,7 @@ int main(int argc, char** argv)
         {       
             for (unsigned int i = 0; i < BLOCK; i++) 
             {
-                *(nums + i) = u1(e) + u2(e)/100.f;
+                *(nums + i) = ::rand() % 1000000 + (::rand() % 100)/100.f;
             }
             outfile.write((char*)nums,BLOCK*sizeof(float));
             outfile.close();
