@@ -100,6 +100,8 @@ int main(int argc, char** argv)
     int q_size = pq.size();
     float* result = (float*)malloc(sizeof(float)*q_size);
     float* _f = result + q_size;
+    cout << setiosflags(ios::fixed);
+    cout << setprecision(2);
     while(!pq.empty())
     {
         pq.dequeue(*(--_f));
@@ -108,13 +110,13 @@ int main(int argc, char** argv)
     //写result.txt文件
     std::ofstream outfile("result.txt",std::ios::binary | std::ios::out);
     outfile << setiosflags(ios::fixed);
-    outfile << setprecision(3);
+    outfile << setprecision(2);
     if(outfile.is_open())
     {
         for(int i = 1; i <= q_size; ++i)
         {
-            outfile << setw(12) << result[i - 1];
-            if(i % 10 == 0)
+            outfile << setw(16) << result[i - 1];
+            if(i % 5 == 0)
             {
                 outfile << endl;
             }
@@ -129,18 +131,18 @@ int main(int argc, char** argv)
     cout << "Generate result file success!              " << endl;
     cout << "The " << q_size << " largest float are : " << endl;
     cout << setiosflags(ios::fixed);
-    cout << setprecision(3);
+    cout << setprecision(2);
     for(int i = 1; i <= q_size; ++i)
     {
-        cout << setw(12) << result[i - 1];
-        if(i % 8 == 0)
+        cout << setw(16) << result[i - 1];
+        if(i % 5 == 0)
         {
             cout << endl;
         }
         if(i >= 200)
         {
             cout << endl;
-            cout << "        ...... If want to see more, you can see the file \"result.txt.\"" << endl;
+            cout << "        ...... If want to see more, see the file \"result.txt.\"" << endl;
             break;
         }
     }
